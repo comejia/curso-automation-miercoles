@@ -1,4 +1,4 @@
-package com.automation.clase2;
+package com.automation.clase2.ejercicios;
 
 public class Ej1Menu {
 
