@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Ej4MainCurso {
+public class Ej3MainCurso {
     /*
     Se requiere crear la clase Curso con los siguientes atributos:
         nombre (string)
