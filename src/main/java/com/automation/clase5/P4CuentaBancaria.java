@@ -12,6 +12,10 @@ public class P4CuentaBancaria {
         return saldo;
     }
 
+    public boolean tieneSaldo() {
+        return saldo > 0;
+    }
+
     public void transferir(int monto) {
         if (monto > saldo) {
             throw new P4SaldoInsuficiente();
