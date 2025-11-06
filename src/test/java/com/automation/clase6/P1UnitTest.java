@@ -1,4 +1,4 @@
-package com.automation;
+package com.automation.clase6;
 
 import com.automation.clase5.P4CuentaBancaria;
 import org.testng.Assert;
