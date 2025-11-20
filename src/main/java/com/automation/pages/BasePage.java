@@ -28,8 +28,18 @@ public class BasePage {
         element.sendKeys(text);
     }
 
+    public void clear(By locator) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        element.clear();
+    }
+
     public void click(By locator) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
+    }
+
+    public void clickOnLyPresence(By locator) {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         element.click();
     }
 }
