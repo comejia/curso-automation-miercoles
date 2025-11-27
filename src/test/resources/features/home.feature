@@ -4,5 +4,5 @@ Característica: Home
 
   @TEST-1234
   Escenario: Validar pantalla de Home
-    Dada que el usuario ingresa a la home
+    Dado que el usuario ingresa a la home
     Entonces la pantalla de la home se muestra correctamente

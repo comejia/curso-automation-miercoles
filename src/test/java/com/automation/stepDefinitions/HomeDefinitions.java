@@ -2,8 +2,10 @@ package com.automation.stepDefinitions;
 
 import com.automation.hooks.Hooks;
 import com.automation.pages.HomePage;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
+import io.cucumber.java.es.Y;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -18,7 +20,7 @@ public class HomeDefinitions {
     @Dado("que el usuario ingresa a la home")
     public void queElUsarioIngresaALaHome() {
         WebDriver driver = Hooks.getDriver();
-        driver.get("https://opencart.abstracta.us/");
+        driver.get(Hooks.getProperty("url"));
     }
 
     @Entonces("la pantalla de la home se muestra correctamente")
@@ -28,5 +30,10 @@ public class HomeDefinitions {
         Assert.assertTrue(homePage.carrouselIsDisplayed(), "Carrousel no visible");
         Assert.assertTrue(homePage.navbarIsDisplayed(), "Navbar no visible");
         Assert.assertTrue(homePage.myAccountDropdownIsDisplayed(), "Dropdown no visible");
+    }
+
+    @Y("el usuario ingresa a registrar una cuenta")
+    public void elUsuarioIngresaARegistrarUnaCuenta() {
+        homePage.goToRegister();
     }
 }

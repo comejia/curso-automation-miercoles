@@ -11,6 +11,7 @@ public class HomePage extends BasePage {
     private By navbar = By.xpath("//nav[@id=\"menu\"]");
     private By myAccountDropdown = By.xpath("//li/a[@title=\"My Account\"]");
     private By loginDropdown = By.xpath("//li/a[text()=\"Login\"]");
+    private By registerDropdown = By.xpath("//li/a[text()=\"Register\"]");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -40,5 +41,10 @@ public class HomePage extends BasePage {
     public void goToLogin() {
         click(myAccountDropdown);
         click(loginDropdown);
+    }
+
+    public void goToRegister() {
+        click(myAccountDropdown);
+        click(registerDropdown);
     }
 }
