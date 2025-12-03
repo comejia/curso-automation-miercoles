@@ -1,5 +1,6 @@
 #language: es
 
+@regression
 Característica: Crear cuenta
 
   @TEST-1235

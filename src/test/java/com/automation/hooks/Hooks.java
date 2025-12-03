@@ -2,6 +2,9 @@ package com.automation.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,11 +23,7 @@ public class Hooks {
 
     @Before
     public void setup() throws IOException {
-        properties = new Properties();
-
-        properties.load(
-                new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config.properties")
-        );
+        properties = loadProperties();
 
         String browser = properties.getProperty("browser");
 
@@ -45,6 +44,7 @@ public class Hooks {
 
         options.addArguments("start-maximized");
         options.addArguments("incognito");
+        options.addArguments("--ignore-certificate-errors");
 
         //options.addArguments("headless");
         //options.setCapability("headless", properties.getProperty("headless"));
@@ -68,7 +68,12 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "screenshot");
+        }
         if (driver != null) {
             driver.quit();
         }
@@ -80,5 +85,21 @@ public class Hooks {
 
     public static String getProperty(String property) {
         return properties.getProperty(property);
+    }
+
+    private Properties loadProperties() throws IOException {
+        Properties props = new Properties();
+
+        props.load(
+                new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/config.properties")
+        );
+
+        System.getProperties().forEach((key, value) -> {
+            if (props.containsKey(key)) {
+                props.setProperty(key.toString(), value.toString());
+            }
+        });
+
+        return props;
     }
 }

@@ -1,5 +1,6 @@
 #language: es
 
+@regression
 Característica: Home
 
   @TEST-1234
