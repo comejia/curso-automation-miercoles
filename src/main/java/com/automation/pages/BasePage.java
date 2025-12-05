@@ -19,7 +19,7 @@ public class BasePage {
     }
 
     public boolean isDisplayed(By locator) {
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return element.isDisplayed();
     }
 

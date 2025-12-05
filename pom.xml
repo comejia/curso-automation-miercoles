@@ -60,7 +60,7 @@
                 <version>3.2.3</version>
                 <configuration>
                     <includes>
-                      <include>**/CucumberRunnerTest.java</include>
+                        <include>**/CucumberRunnerTest.java</include>
                     </includes>
                 </configuration>
             </plugin>

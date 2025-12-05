@@ -36,4 +36,9 @@ public class HomeDefinitions {
     public void elUsuarioIngresaARegistrarUnaCuenta() {
         homePage.goToRegister();
     }
+
+    @Y("el usuario ingresa al login")
+    public void elUsuarioIngresaAlLogin() {
+        homePage.goToLogin();
+    }
 }
