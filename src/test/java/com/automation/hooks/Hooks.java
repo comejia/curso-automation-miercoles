@@ -25,7 +25,7 @@ public class Hooks {
     public void setup() throws IOException {
         properties = loadProperties();
 
-        String browser = properties.getProperty("browser");
+        String browser = getProperty("browser");
 
         switch (browser) {
             case "chrome":
@@ -46,13 +46,16 @@ public class Hooks {
         options.addArguments("incognito");
         options.addArguments("--ignore-certificate-errors");
 
-        //options.addArguments("headless");
-        //options.setCapability("headless", properties.getProperty("headless"));
+        if (getProperty("headless").equals("true")) {
+            options.addArguments("headless");
+        }
 
         options.setPageLoadTimeout(Duration.ofSeconds(60));
 
         // ruta al binario del driver
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver.exe");
+        if (!getProperty("docker_enable").equals("true")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/chromedriver.exe");
+        }
 
         return new ChromeDriver(options);
     }
@@ -62,7 +65,9 @@ public class Hooks {
 
         options.addArguments("--private");
         options.setPageLoadTimeout(Duration.ofSeconds(60));
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/geckodriver.exe");
+        if (!getProperty("docker_enable").equals("true")) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/drivers/geckodriver.exe");
+        }
 
         return new FirefoxDriver(options);
     }
